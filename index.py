@@ -1,4 +1,3 @@
-from PIL import Image, ImageTk
 import tkinter as tk
 import random
 import os
@@ -6,7 +5,7 @@ import time
 import logging
 
 # Correct path to the folder containing images
-image_folder_path = '/Users/oliverkozub/Desktop/Random Code/momo/img'
+image_folder_path = 'Users\Olive\OneDrive\Documents\GitHub\jump-scare\img'
 
 # Get all image files from the folder
 image_files = [f for f in os.listdir(image_folder_path) if os.path.isfile(os.path.join(image_folder_path, f))]
