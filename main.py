@@ -21,6 +21,8 @@ def get_random_image():
     image_files = [f for f in os.listdir(image_folder_path) if os.path.isfile(os.path.join(image_folder_path, f))]
     image_path = os.path.join(image_folder_path, random.choice(image_files))
 
+    print("Image Path Found", image_path)
+
     return image_path
 
 def init():
@@ -30,4 +32,5 @@ def init():
     
     init()
 
+init()
 
