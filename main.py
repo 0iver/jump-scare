@@ -2,25 +2,25 @@ from PIL import Image, ImageTk
 import random 
 import os 
 import time
-import tkinter
+import tkinter as tk
 
-def show_image(image_path): 
-    window = tkinter.Tk()
+def show_image(image_path):
+    window = tk.Tk()
+    window.title("Image Display")
 
     img = Image.open(image_path)
-    img = ImageTk.PhotoImage(img)
-    panel = tkinter.Label(window, image=img)
+    tk_img = ImageTk.PhotoImage(img)
+    panel = tk.Label(window, image=tk_img)
+    panel.image = tk_img 
     panel.pack(side="bottom", fill="both", expand="yes")
 
-    random_time = random.randint(1, 15) 
+    random_time = random.randint(1, 15)
 
-    print("Waiting for", random_time, "seconds")
+    print("Waiting for", random_time, "seconds before closing window")
+    
+    window.after(random_time * 1000, window.destroy)
 
-    time.sleep(random_time)
-
-    print("Destorying Window")
-
-    window.destroy()
+    window.mainloop()
 
 def get_random_image():
     image_folder_path = os.path.join(os.getcwd(), "img")
@@ -33,17 +33,15 @@ def get_random_image():
     return image_path
 
 def init():
-    show_image(get_random_image())
-    
-    random_sleep_amount = random.randint(60, 120)
+    while True:
+        show_image(get_random_image())
+        
+        random_sleep_amount = random.randint(60, 120)
 
-    print("Waiting for", random_sleep_amount, "Seconds")
-    
-    time.sleep(random_sleep_amount)
-    
-    print("Restarying Cycle")
+        print("Waiting for", random_sleep_amount, "seconds")
 
-    init()
+        time.sleep(random_sleep_amount)
+        
+        print("Restarting Cycle")
 
 init()
-
